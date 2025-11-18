@@ -1,86 +1,73 @@
 Projeto acadêmico de Machine Learning para queimadas na Austrália em 2026.
 
+🔥 Predição de Queimadas na Austrália
+Projeto acadêmico de Machine Learning para queimadas na Austrália em 2026.
+📊 Informações do Dataset
 
+Fonte: NASA MODIS (FIRMS)
+Período: 2014-2024
+Registros: 2,654,051 detecções de fogo
+Região: Austrália
+Algoritmo: Random Forest Classifier
+Acurácia: 70% ~ 90%
+Features: 14 (latitude, longitude, brightness, estação, etc.)
 
-\- \*\*Fonte:\*\* NASA MODIS (FIRMS)
-
-\- \*\*Período:\*\* 2014-2024
-
-\- \*\*Registros:\*\* 2,654,051 detecções de fogo
-
-\- \*\*Região:\*\* Austrália
-
-
-
-\- \*\*Algoritmo:\*\* Random Forest Classifier
-
-\- \*\*Acurácia:\*\* \[COLOCA A ACURÁCIA DO SEU MODELO]%
-
-\- \*\*Features:\*\* 14 (latitude, longitude, brightness, estação, etc.)
-
-
-
-Estrutura
-
-```
-
-├── fire\_burns/
-
-│   ├── data\_fetch.py        Coleta de dados (CSV + API NASA)
-
-│   ├── sort\_data.py          Ordenação TimSort + Parquet
-
-│   ├── model\_training.py     Treinamento do modelo
-
-│   ├── predict\_model.py      Sistema de predição
-
-│   └── pipeline.py           Pipeline completa
-
-├── fire\_model.pkl            Modelo treinado
-
-├── sorted\_fires\_australia.parquet      Dados ordenados
-
-└── fire\_prediction\_random\_forest.png    Visualizações
-
-```
+📁 Estrutura do Projeto
+├── fire_burns/
+│   ├── data_fetch.py        # Coleta de dados (CSV + API NASA)
+│   ├── sort_data.py          # Ordenação TimSort + Parquet
+│   ├── model_training.py     # Treinamento do modelo
+│   ├── predict_model.py      # Sistema de predição
+│   └── pipeline.py           # Pipeline completa
+├── fire_model.pkl            # Modelo treinado (baixe aqui!)
+├── sorted_fires_australia.parquet      # Dados ordenados
+└── fire_prediction_random_forest.png    # Visualizações
 
 
 
+🚀 Como Usar
+1. Baixar o Modelo Treinado
+Para usar o modelo sem precisar treinar novamente:
+Opção A - Download Direto:
 
+Baixe o arquivo fire_model.pkl do repositório
+Coloque na raiz do projeto
 
-&nbsp;Exemplo de Predição
+Opção B - Treinar localmente (demora ~5 minutos):
+bashpython fire_burns/model_training.py
 
-```python
+2. Fazer Predições
+pythonfrom fire_burns.predict_model import predict_fire
 
-from fire\_burns.predict\_model import predict\_fire
-
-
-
-result = predict\_fire(
-
-&nbsp;   latitude=-33.87,   # Sydney
-
-&nbsp;   longitude=151.21,
-
-&nbsp;   month=1,           # Janeiro
-
-&nbsp;   day=15,
-
-&nbsp;   year=2026
-
+result = predict_fire(
+    latitude=-33.87,   # Sydney
+    longitude=151.21,
+    month=1,           # Janeiro
+    day=15,
+    year=2026
 )
 
+print(f"Risco: {result['fire_risk']}")
+print(f"Intensidade: {result['predicted_intensity']}")
+print(f"Confiança: {result['confidence_score']}")
 
 
-print(f"Risco: {result\['fire\_risk']}")
+🛠️ Instalação
 
-print(f"Intensidade: {result\['predicted\_intensity']}")
+# Instale as dependências
+pip install pandas numpy scikit-learn matplotlib seaborn pyarrow na nova versão 
 
-print(f"Confiança: {result\['confidence\_score']}")
+# Rode o Model_training
 
-```
+# Baixe o modelo (ver seção "Como Usar")
+📦 Dependências
 
-
-
+Python 3.8+
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+pyarrow
 
 
