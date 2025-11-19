@@ -7,19 +7,18 @@ import os
 def load_model():
     model_path = 'fire_model.pkl'
     if not os.path.exists(model_path):
-        print(f"Modelo não encontrado no {model_path}")
-        print("Execute o model_training.py primeiro")
+        print(f"Modelo não encontrado: {model_path}")
+        print("Rode o model_training.py primeiro!")
         exit()
     
-    print(f"Carregando modelo de: {model_path}")
-    try:
-        with open(model_path, 'rb') as f:
-            model = pickle.load(f)
-        print("Modelo carregado.")
-        return model
-    except Exception as e:
-        print(f"Erro ao carregar modelo: {e}")
-        exit()
+    with open(model_path, 'rb') as f:
+        data = pickle.load(f)
+    
+    # Aqui está o segredo:
+    model = data['model']  
+    
+    print("Modelo RandomForest carregado")
+    return model
 
 rf_intensity = load_model()
 
@@ -222,4 +221,4 @@ if __name__ == "__main__":
     print(f"Risco de Fogo: {result['fire_risk']}")
     print(f"Intensidade Prevista: {result['predicted_intensity']}")
     print(f"Confiança: {result['confidence_score']}")
-    print(f"Temperatura: {result['brightness']}°C")
+    print(f"Temperatura: {result['brightness']}°K")
